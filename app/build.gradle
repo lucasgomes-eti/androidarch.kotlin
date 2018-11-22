@@ -12,6 +12,7 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -26,11 +27,17 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$rootProject.android_support"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_layout"
     testImplementation "junit:junit:$rootProject.junit"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espresso"
+
+    //Android Support
+    implementation "com.android.support:support-v4:$rootProject.android_support"
+    implementation "com.android.support:appcompat-v7:$rootProject.android_support"
+    implementation "com.android.support:preference-v7:$rootProject.android_support"
+    implementation "com.android.support:design:$rootProject.android_support"
+    implementation "com.android.support:support-media-compat:$rootProject.android_support"
 
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$rootProject.anko"
