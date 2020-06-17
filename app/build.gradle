@@ -36,6 +36,9 @@ android {
         includeInApk true
         includeInBundle true
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {

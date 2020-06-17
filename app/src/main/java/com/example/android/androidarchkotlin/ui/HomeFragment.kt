@@ -7,24 +7,34 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.android.androidarchkotlin.R
+import com.example.android.androidarchkotlin.databinding.HomeFragmentBinding
 import com.example.android.androidarchkotlin.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
 
+    private var _binding: HomeFragmentBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        _binding = HomeFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.hello.observe(viewLifecycleOwner, Observer { tv_app_name.text = it })
+        viewModel.hello.observe(viewLifecycleOwner, Observer { binding.tvAppName.text = it })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
