@@ -2,7 +2,7 @@ package com.example.android.androidarchkotlin.di
 
 import com.example.android.androidarchkotlin.App
 import com.example.android.androidarchkotlin.ui.MainActivity
-import com.example.android.androidarchkotlin.viewmodel.MainViewModel
+import com.example.android.androidarchkotlin.viewmodel.HomeViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,5 +14,5 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
 
-    fun inject(mainViewModel: MainViewModel)
+    fun inject(homeViewModel: HomeViewModel)
 }

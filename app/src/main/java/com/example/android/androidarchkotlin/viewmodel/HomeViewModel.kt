@@ -9,7 +9,7 @@ import com.example.android.androidarchkotlin.R
 import com.example.android.androidarchkotlin.repository.MainRepository
 import javax.inject.Inject
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     @Inject
     lateinit var mainRepository: MainRepository

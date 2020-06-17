@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -41,11 +42,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // KTX
-    implementation "androidx.core:core-ktx:1.3.0"
-    implementation "androidx.activity:activity-ktx:1.1.0"
+    implementation "androidx.core:core-ktx:$rootProject.ktx"
+    implementation "androidx.fragment:fragment-ktx:$rootProject.fragment_ktx"
 
     //Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     //Tests
     testImplementation "junit:junit:$rootProject.junit"
@@ -66,6 +68,10 @@ dependencies {
     implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$rootProject.anko"
 
     // Architecture Components
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation"
 
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle"
