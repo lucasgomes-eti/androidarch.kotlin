@@ -1,6 +1,6 @@
 package com.example.android.androidarchkotlin.remote
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.example.android.androidarchkotlin.model.Main
 import com.example.android.androidarchkotlin.remote.util.ApiResponse
 import retrofit2.http.GET

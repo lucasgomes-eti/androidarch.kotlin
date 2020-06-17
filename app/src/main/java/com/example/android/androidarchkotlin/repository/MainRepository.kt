@@ -1,6 +1,6 @@
 package com.example.android.androidarchkotlin.repository
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.example.android.androidarchkotlin.AppExecutors
 import com.example.android.androidarchkotlin.db.dao.MainDao
 import com.example.android.androidarchkotlin.model.Main

@@ -1,17 +1,18 @@
 package com.example.android.androidarchkotlin.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.android.androidarchkotlin.App
 import com.example.android.androidarchkotlin.R
 import com.example.android.androidarchkotlin.repository.MainRepository
 import javax.inject.Inject
 
-class MainViewModel(application: Application): AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    @Inject lateinit var mainRepository: MainRepository
+    @Inject
+    lateinit var mainRepository: MainRepository
 
     private val _hello = MutableLiveData<String>()
     val hello: LiveData<String>

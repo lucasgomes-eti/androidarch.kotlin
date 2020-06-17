@@ -1,8 +1,8 @@
 package com.example.android.androidarchkotlin.db.dao
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.*
-import android.arch.persistence.room.OnConflictStrategy.REPLACE
+import androidx.lifecycle.LiveData
+import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
 import com.example.android.androidarchkotlin.db.model.MainEntity
 
 @Dao

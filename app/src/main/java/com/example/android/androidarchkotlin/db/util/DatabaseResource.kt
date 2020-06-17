@@ -1,8 +1,8 @@
 package com.example.android.androidarchkotlin.db.util
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
-import android.support.annotation.MainThread
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.annotation.MainThread
 import com.example.android.androidarchkotlin.AppExecutors
 import com.example.android.androidarchkotlin.model.api.Resource
 

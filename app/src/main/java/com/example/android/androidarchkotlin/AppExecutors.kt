@@ -2,7 +2,7 @@ package com.example.android.androidarchkotlin
 
 import android.os.Handler
 import android.os.Looper
-import android.support.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Inject

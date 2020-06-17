@@ -1,6 +1,6 @@
 package com.example.android.androidarchkotlin.di
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 import com.example.android.androidarchkotlin.db.Database
 import com.example.android.androidarchkotlin.db.dao.MainDao
@@ -15,7 +15,7 @@ open class DatabaseModule(private val context: Context) {
     @Singleton
     internal fun provideDatabase(): Database {
         return Room
-                .databaseBuilder(context, Database::class.java, "androidarchjava.db")
+                .databaseBuilder(context, Database::class.java, "androidarchkotlin.db")
                 .build()
     }
 
