@@ -15,6 +15,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
 
     private var _binding: HomeFragmentBinding? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -30,7 +31,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.status.observe(viewLifecycleOwner, Observer { binding.tvStatus.append(it) })
+
         viewModel.hello.observe(viewLifecycleOwner, Observer { binding.tvAppName.text = it })
+
+        binding.btnRefresh.setOnClickListener {
+            binding.tvStatus.text = ""
+            viewModel.loadMain()
+        }
     }
 
     override fun onDestroyView() {

@@ -2,7 +2,7 @@ package com.example.android.androidarchkotlin.di
 
 import com.example.android.androidarchkotlin.BuildConfig
 import com.example.android.androidarchkotlin.remote.MainService
-import com.example.android.androidarchkotlin.remote.util.LiveDataCallAdapterFactory
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -19,12 +19,12 @@ class RemoteModule {
     @Singleton
     internal fun provideOkHttp(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .cache(null)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(120, TimeUnit.SECONDS)
-                .writeTimeout(120, TimeUnit.SECONDS)
-                .build()
+            .addInterceptor(loggingInterceptor)
+            .cache(null)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(120, TimeUnit.SECONDS)
+            .writeTimeout(120, TimeUnit.SECONDS)
+            .build()
     }
 
     @Provides
@@ -40,11 +40,10 @@ class RemoteModule {
     internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         val apiAddress = BuildConfig.ApiBaseUrl
         return Retrofit.Builder()
-                .baseUrl(apiAddress)
-                .addCallAdapterFactory(LiveDataCallAdapterFactory())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build()
+            .baseUrl(apiAddress)
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .client(okHttpClient)
+            .build()
     }
 
     @Provides

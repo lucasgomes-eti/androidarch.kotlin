@@ -1,25 +1,55 @@
 package com.example.android.androidarchkotlin.repository
 
-import androidx.lifecycle.LiveData
-import com.example.android.androidarchkotlin.AppExecutors
+import androidx.lifecycle.liveData
 import com.example.android.androidarchkotlin.db.dao.MainDao
-import com.example.android.androidarchkotlin.model.Main
-import com.example.android.androidarchkotlin.model.api.Resource
+import com.example.android.androidarchkotlin.model.api.Result
 import com.example.android.androidarchkotlin.remote.MainService
-import com.example.android.androidarchkotlin.remote.util.ApiResponse
-import com.example.android.androidarchkotlin.remote.util.NetworkResource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
-        private val mainService: MainService,
-        private val mainDao: MainDao,
-        private val appExecutors: AppExecutors) {
+    private val mainService: MainService,
+    private val mainDao: MainDao
+) {
 
-    fun loadMain(): LiveData<Resource<Main>> {
-        return object : NetworkResource<Main>(appExecutors) {
-            override fun createCall(): LiveData<ApiResponse<Main>> {
-                return mainService.getMain()
+    fun loadMain() = liveData {
+        withContext(Dispatchers.IO) {
+            /**
+             * before call this function you may want to control if you want to fetch new data or not
+             */
+            suspend fun fetchAndReload() {
+                try {
+                    val fromApi = mainService.getMain() // fetch data
+                    if (fromApi.isSuccessful) { // network call is successful
+                        fromApi.body()?.toEntity()?.let { mainDao.createMain(it) } // save to disk
+                        val fromDbReloaded = mainDao.readMain() // reload
+                        emit(Result.Success(fromDbReloaded!!)) // dispatch reloaded
+                    } else { // network throw an error
+                        emit(
+                            Result.Error(
+                                Exception(
+                                    fromApi.errorBody()?.toString() ?: "Unknown Error"
+                                )
+                            )
+                        )
+                    }
+                } catch (e: Exception) {
+                    emit(Result.Error(e))
+                }
             }
-        }.asLiveData()
+
+            val fromDb = mainDao.readMain() // observe disk
+            if (fromDb == null) { // disk is null
+                emit(Result.Loading(true)) // dispatch loading info
+                fetchAndReload() // fetch and reload data
+                emit(Result.Loading(false)) // dispatch loading info
+            } else { // disk has data
+                emit(Result.Offline(fromDb)) // dispatch old data while reloading
+                emit(Result.Loading(true)) // dispatch loading info
+                fetchAndReload() // fetch and reload data
+                emit(Result.Loading(false)) // dispatch loading info
+            }
+        }
     }
 }
