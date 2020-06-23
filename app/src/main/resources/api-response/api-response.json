@@ -1,0 +1,23 @@
+{
+  "data": {
+    "_id": 1,
+    "name": "point 1",
+    "location": {
+      "region": {
+        "name": "ambarino",
+        "precise": "cumberland forest"
+      },
+      "cardinals": {
+        "full": "north east",
+        "simplified": "ne"
+      },
+      "near_by": [
+        "window rock",
+        "fort wallace",
+        "whinyard strait"
+      ],
+      "image": "https://madamnazar.github.io/images/location/rdo_map_nazar_1_ny8ysc.jpg"
+    }
+  },
+  "dataFor": "2020/6/22"
+}

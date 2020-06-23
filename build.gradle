@@ -62,4 +62,7 @@ ext {
     retrofit = '2.9.0'
     runner = '1.0.2'
     material = '1.1.0'
+    arch_core_testing = '2.1.0'
+    mockito = '2.25.0'
+    okhttp = '4.7.2'
 }

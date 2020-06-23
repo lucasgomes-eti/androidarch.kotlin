@@ -9,8 +9,8 @@ data class Main(
     fun toEntity() = MainEntity(
         nazarLocation =
         "Today madam nazar is at ${data.location.region.name}, " +
-            "precisely in ${data.location.region.precise} " +
-            "and close to: ${data.location.nearBy.joinToString(", ") { it }}"
+            "precisely in ${data.location.region.precise}, " +
+            "and close to: ${data.location.nearBy.joinToString(", ") { it }}" + "."
     )
 }
 

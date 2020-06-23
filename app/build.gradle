@@ -54,6 +54,11 @@ dependencies {
 
     //Tests
     testImplementation "junit:junit:$rootProject.junit"
+    testImplementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttp"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.arch_core_testing"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockito"
+
     androidTestImplementation "androidx.test.ext:junit:$rootProject.junit_android_x"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espresso"
 
@@ -105,4 +110,7 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+
+    //OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
 }
