@@ -20,7 +20,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private var _main = MutableLiveData<MainEntity>()
 
     val hello: LiveData<String>
-    get() = _main.map { it.id.toString() + " " + it.nazarLocation }
+    get() = _main.map { it.nazarLocation }
 
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>

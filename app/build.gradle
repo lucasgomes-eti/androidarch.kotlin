@@ -36,8 +36,12 @@ android {
         includeInApk true
         includeInBundle true
     }
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
+    }
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
     }
 }
 
@@ -53,14 +57,27 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     //Tests
-    testImplementation "junit:junit:$rootProject.junit"
-    testImplementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttp"
-    testImplementation "androidx.arch.core:core-testing:$rootProject.arch_core_testing"
-    testImplementation "org.mockito:mockito-core:$rootProject.mockito"
+    testImplementation deps.junit
+    testImplementation deps.mock_web_server
+    testImplementation deps.arch_core.testing
+    testImplementation deps.mockito.core
 
-    androidTestImplementation "androidx.test.ext:junit:$rootProject.junit_android_x"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espresso"
+    androidTestImplementation deps.atsl.core
+    androidTestImplementation deps.atsl.ext_junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
+
+//    androidTestImplementation deps.app_compat
+    androidTestImplementation deps.recyclerview
+    androidTestImplementation deps.cardview
+    androidTestImplementation deps.material
+
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.espresso.contrib
+
+    androidTestImplementation deps.arch_core.testing
+    androidTestImplementation deps.mockito.core
+    androidTestImplementation deps.mockito.android
 
     //Android Support
     implementation "androidx.legacy:legacy-support-v4:$rootProject.legacy_support"
@@ -78,8 +95,7 @@ dependencies {
     // Architecture Components
 
     // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation"
-    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation"
+    implementation deps.navigation.fragment_ktx
 
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle"
